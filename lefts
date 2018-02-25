@@ -1,0 +1,12 @@
+   let fold = https://ipfs.io/ipfs/QmQ8w5PLcsNz56dMvRtq54vbuPe9cNnCCUXAQp6xLc6Ccx/Prelude/List/fold
+in let lefts : ∀(a : Type) → ∀(b : Type)
+             → List (./Either a b) → List a
+       = λ(a : Type) → λ(b : Type) →
+         λ(eithers : List (./Either a b)) →
+         let handlers =
+              { Left  = λ(x : a) → λ(acc : List a) → [x] # acc
+              , Right = λ(y : b) → λ(acc : List a) → acc
+              }
+         in fold (./Either a b) eithers (List a) (λ(e : ./Either a b) → λ(acc : List a) → (merge handlers e : (List a → List a)) acc) ([] : List a)
+in lefts
+
