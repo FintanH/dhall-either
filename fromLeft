@@ -1,11 +1,11 @@
+    let not =
+          https://ipfs.io/ipfs/QmQ8w5PLcsNz56dMvRtq54vbuPe9cNnCCUXAQp6xLc6Ccx/Prelude/Bool/not 
 
-let fromLeft : ∀(a : Type) → ∀(b : Type)
-           → a -> ./Either a b → a
-    = λ(a : Type) → λ(b : Type) →
-      λ(def : a) → λ(e : ./Either a b) →
-      let handlers =
-            { Left  = λ(x : a) → x
-            , Right = λ(y : b) → def
-            }
-      in merge handlers e : a
-in fromLeft
+in  let isLeft
+        : ∀(a : Type) → ∀(b : Type) → ./Either  a b → Bool
+        =   λ(a : Type)
+          → λ(b : Type)
+          → λ(e : ./Either  a b)
+          → not (./isLeft  a b e)
+
+in  isLeft
