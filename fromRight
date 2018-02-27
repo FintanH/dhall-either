@@ -6,7 +6,7 @@
           → λ(def : b)
           → λ(e : ./Either  a b)
           →     let handlers = { Left = λ(x : a) → def, Right = λ(y : b) → y }
-            
+
             in  merge handlers e : b
 
 in  fromRight
